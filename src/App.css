@@ -1,0 +1,4 @@
+/* App-level resets — all styling done via Tailwind in components */
+#root {
+  width: 100%;
+}
