@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-const SONG_BG =
-  '/songs/Aaj Se Teri - Lyrical _ Padman _ Akshay Kumar & Radhika Apte _ Arijit Singh _ Amit Trivedi.mp3';
+const SONG_BG = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/songs/Aaj Se Teri.mp3`;
 
 // Module-level singleton — survives React StrictMode double-invoke
 let _audio = null;
@@ -29,7 +28,7 @@ export default function MusicPlayer() {
 
     const startOnInteraction = () => {
       removeListeners(); // prevent double-fire with togglePlay
-      bg.play().then(() => setPlaying(true)).catch(() => {});
+      bg.play().then(() => setPlaying(true)).catch((err) => console.warn('startOnInteraction play failed:', err));
     };
 
     removeListenerRef.current = removeListeners;
@@ -54,7 +53,7 @@ export default function MusicPlayer() {
       bg.pause();
       setPlaying(false);
     } else {
-      bg.play().then(() => setPlaying(true)).catch(() => {});
+      bg.play().then(() => setPlaying(true)).catch((err) => console.warn('togglePlay failed:', err));
     }
   };
 
