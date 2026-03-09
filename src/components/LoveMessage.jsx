@@ -170,6 +170,7 @@ function NoteStack() {
               cursor: isTop ? 'grab' : 'default',
               opacity: hidden ? 0 : 1,
               pointerEvents: hidden ? 'none' : (isTop ? 'auto' : 'none'),
+              touchAction: isTop ? 'none' : 'auto',
               transform: hidden ? 'scale(0.85)' : `scale(${1 - Math.max(0, offset) * 0.035}) translateY(${Math.max(0, offset) * 14}px) rotate(${offset <= 0 ? 0 : (i % 2 === 0 ? offset * 1.8 : -offset * 1.8)}deg)`,
               transformOrigin: 'bottom center',
               willChange: 'transform',
